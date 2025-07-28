@@ -1,8 +1,8 @@
-# 🍯 Jollibee BeeLoyalty System
+# Jollibee BeeLoyalty System
 
 ## AI-Powered Customer Analytics with Elasticsearch ELSER
 
-A production-ready real-time analytics platform showcasing advanced Elasticsearch capabilities including ELSER semantic search, real-time connected analytics, and AI-driven recommendations.
+A real-time analytics platform showcasing advanced Elasticsearch capabilities including ELSER semantic search, real-time connected analytics, and AI-driven recommendations.
 
 [![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.x-yellow)](https://www.elastic.co/)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue)](https://python.org)
@@ -20,7 +20,7 @@ If you run `python debug_data.py` and see missing data:
 1. **Check Elasticsearch Connection**:
    ```bash
    # Verify your .env file has correct credentials
-   python -c "from config import Config; Config.validate(); print('✅ Config OK')"
+   python -c "from config import Config; Config.validate(); print('Config OK')"
    ```
 
 2. **Re-run Setup**:
@@ -67,27 +67,27 @@ python setup/customer_setup.py debug
 
 ---
 
-## 🚀 Features
+## Features
 
-### 🧠 **ELSER Semantic Search**
+### **ELSER Semantic Search**
 - **Intent Understanding**: Search "family meal" finds "6 Pc Chickenjoy Bucket"
 - **Multilingual Support**: English + Filipino queries (e.g., "meryenda para sa bata")
 - **Cultural Context**: Understands local terms like "langhap-sarap" and "mura"
 - **Contextual Relevance**: Budget queries return affordable options automatically
 
-### 🔄 **Real-Time Connected Analytics**
+### **Real-Time Connected Analytics**
 - **Instant Updates**: Orders immediately update all dashboards
 - **Connected Intelligence**: Inventory decreases as orders are placed
 - **Live Metrics**: Revenue, customer points, and analytics refresh in real-time
 - **Bulk Processing**: Handle 25+ orders in under 2 seconds
 
-### 🎯 **AI-Powered Recommendations**
+### **AI-Powered Recommendations**
 - **Profile-Based**: LLM analyzes customer preferences semantically
 - **Tier-Aware**: Recommendations adapt to loyalty tier (BeeBuddy/BeeFan/BeeElite)
 - **Contextual**: Weather and inventory-aware suggestions
 - **Dynamic**: Updates with every customer interaction
 
-### 📊 **Production-Ready Architecture**
+### **Production-Ready Architecture**
 - **Multi-Index Design**: Optimized for different data types and access patterns
 - **ELSER Pipeline**: Automatic semantic enrichment during ingestion
 - **Real-Time Refresh**: Sub-second analytics updates
@@ -95,7 +95,7 @@ python setup/customer_setup.py debug
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Elasticsearch Index Strategy
 
@@ -409,7 +409,7 @@ curl -X POST http://localhost:5000/api/simulate/bulk-orders \
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -459,25 +459,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🎯 Roadmap
 
 ### Phase 1 (Current)
-- ✅ ELSER semantic search
-- ✅ Real-time analytics 
-- ✅ AI recommendations
-- ✅ Multi-index architecture
+-  ELSER semantic search
+-  Real-time analytics 
+-  AI recommendations
+-  Multi-index architecture
 
 ### Phase 2 (Next)
-- 🔄 GPT integration for conversational ordering
-- 🔄 Advanced ML forecasting
-- 🔄 Cross-store inventory optimization
-- 🔄 Mobile app integration
+-  GPT integration for conversational ordering
+-  Advanced ML forecasting
+-  Cross-store inventory optimization
+-  Mobile app integration
 
 ### Phase 3 (Future)
-- 🔄 Voice ordering capabilities
-- 🔄 Computer vision for food recognition
-- 🔄 Blockchain loyalty rewards
-- 🔄 IoT kitchen integration
+-  Voice ordering capabilities
+-  Computer vision for food recognition
+-  Blockchain loyalty rewards
+-  IoT kitchen integration
 
 ---
 
 **Built with ❤️ using Elasticsearch ELSER, Flask, and the power of semantic search.**
 
-*Ready to revolutionize customer intelligence? Star this repo and let's build the future together! 🚀*
+*Ready to revolutionize customer intelligence? Star this repo and let's build the future together! *
