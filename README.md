@@ -14,7 +14,7 @@ A real-time analytics platform showcasing advanced Elasticsearch capabilities in
 
 ### Prerequisites
 
-- **Elasticsearch 8.12+** with ML license (Trial/Platinum/Enterprise)
+- **Elasticsearch 8.18+** with ML license (Trial/Platinum/Enterprise)
 - **Minimum 8GB RAM** for ML models
 - **Python 3.9+**
 - **Elasticsearch API credentials** with cluster and ML privileges
