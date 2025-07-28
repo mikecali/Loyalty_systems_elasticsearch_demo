@@ -10,6 +10,234 @@ A real-time analytics platform showcasing advanced Elasticsearch capabilities in
 [![ELSER](https://img.shields.io/badge/ELSER-v2-orange)](https://www.elastic.co/guide/en/machine-learning/current/ml-nlp-elser.html)
 
 ---
+## 🛠️ Complete Setup Process
+
+### Prerequisites
+
+- **Elasticsearch 8.12+** with ML license (Trial/Platinum/Enterprise)
+- **Minimum 8GB RAM** for ML models
+- **Python 3.9+**
+- **Elasticsearch API credentials** with cluster and ML privileges
+
+### 1. Clone & Setup
+
+```bash
+git clone https://github.com/yourusername/jollibee-beeloyalty.git
+cd jollibee-beeloyalty
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy environment template
+cp .env.example .env
+```
+
+### 2. Configure Environment
+
+Edit `.env` with your Elasticsearch credentials:
+
+```bash
+ELASTICSEARCH_ENDPOINT=https://your-elasticsearch-endpoint
+ELASTICSEARCH_API_KEY=your_api_key_here
+ANTHROPIC_API_KEY=sk-ant-api03-your-key-here  # Optional for Claude AI
+```
+
+### 3. Enable Required ML Models
+
+#### Deploy ELSER Model (Required)
+
+**Option A: Using Kibana ML UI**
+1. Navigate to **Kibana → Machine Learning → Trained Models**
+2. Find `.elser_model_2_linux-x86_64` in the list
+3. Click **"Start deployment"**
+4. Set allocations to 1-2 and click **"Start"**
+5. Wait for status to show **"Started"**
+
+**Option B: Using Dev Tools**
+```bash
+# Deploy ELSER model
+POST _ml/trained_models/.elser_model_2_linux-x86_64/deployment/_start
+{
+  "number_of_allocations": 1,
+  "threads_per_allocation": 1,
+  "priority": "normal"
+}
+
+# Check deployment status
+GET _ml/trained_models/.elser_model_2_linux-x86_64/deployment/_stats
+```
+
+#### Create ELSER Inference Endpoint
+
+```bash
+# Create ELSER inference endpoint
+PUT _inference/.elser-2-elasticsearch
+{
+  "task_type": "sparse_embedding",
+  "service": "elasticsearch",
+  "service_settings": {
+    "num_allocations": 1,
+    "num_threads": 1,
+    "model_id": ".elser_model_2_linux-x86_64"
+  }
+}
+```
+
+### 4. Setup Claude AI Integration (Optional)
+
+**Using Dev Tools:**
+```bash
+PUT _inference/claude-completions
+{
+  "service": "anthropic",
+  "service_settings": {
+    "api_key": "sk-ant-api03-xxxxxxxxx-xxxxxxxxx",
+    "model_id": "claude-sonnet-4-20250514"
+  },
+  "task_type": "completion",
+  "task_settings": {
+    "max_tokens": 500,
+    "temperature": 0.7
+  }
+}
+```
+
+### 5. Initialize Application Data
+
+```bash
+# Create indices and load sample data
+python setup_all.py
+```
+
+### 6. Verify Complete Setup
+
+```bash
+# Check if all data was properly ingested
+python debug_data.py
+
+# Test semantic search functionality
+python debug_data.py search
+```
+
+### 7. Start Application
+
+```bash
+# Start the web application
+python app.py
+```
+
+Visit `http://localhost:5000` to experience semantic search and real-time analytics!
+
+---
+## Quick Start
+
+### Prerequisites
+
+- **Elasticsearch 8.x** with ELSER model deployed
+- **Python 3.9+**
+- **Elasticsearch API credentials**
+
+### 1. Clone & Setup
+
+```bash
+git clone https://github.com/yourusername/jollibee-beeloyalty.git
+cd jollibee-beeloyalty
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy environment template
+cp .env.example .env
+```
+
+### 2. Configure Environment
+
+Edit `.env` with your Elasticsearch credentials:
+
+```bash
+ELASTICSEARCH_ENDPOINT=https://your-elasticsearch-endpoint
+ELASTICSEARCH_API_KEY=your_api_key_here
+```
+
+### 3. Initialize System
+
+```bash
+# Run complete setup (creates indices, ingests data, tests everything)
+python setup_all.py
+```
+
+### 4. Verify Data Ingestion
+
+```bash
+# Check if all data was properly ingested
+python debug_data.py
+
+# Check specific customer data
+python debug_data.py customer mike001
+
+# Test semantic search functionality
+python debug_data.py search
+```
+
+### 5. Start Application
+
+```bash
+# Start the web application
+python app.py
+```
+
+Visit `http://localhost:5000` to access the platform!
+
+---
+
+## If Setup Fails
+
+### Missing ML Models
+```bash
+# Check available models
+GET _ml/trained_models
+
+# If ELSER model is missing, it may need to be downloaded first
+PUT _ml/trained_models/.elser_model_2_linux-x86_64
+{
+  "input": {
+    "field_names": ["text_field"]
+  }
+}
+```
+
+### Verify Model Deployment
+```bash
+# Check all model deployments
+GET _ml/trained_models/_stats
+
+# Verify ELSER is running
+GET _ml/trained_models/.elser_model_2_linux-x86_64/deployment/_stats
+```
+
+### Test Inference Endpoints
+```bash
+# Test ELSER endpoint
+POST _inference/.elser-2-elasticsearch
+{
+  "input": "family meal crispy chicken"
+}
+
+# Test Claude endpoint (if configured)
+POST _inference/claude-completions
+{
+  "input": "Suggest a family meal from Jollibee menu"
+}
+```
+
+### License Issues
+- Get a **30-day trial license** from Elastic
+- Or upgrade to **Platinum/Enterprise** for production
+
+### Resource Constraints
+- Ensure **minimum 8GB RAM** for your Elasticsearch cluster
+- Consider scaling up your deployment
+---
 
 ## Troubleshooting
 
@@ -114,68 +342,7 @@ User Order → Transaction Created → Analytics Updated → Inventory Adjusted 
 
 ---
 
-## Quick Start
-
-### Prerequisites
-
-- **Elasticsearch 8.x** with ELSER model deployed
-- **Python 3.9+**
-- **Elasticsearch API credentials**
-
-### 1. Clone & Setup
-
-```bash
-git clone https://github.com/yourusername/jollibee-beeloyalty.git
-cd jollibee-beeloyalty
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Copy environment template
-cp .env.example .env
-```
-
-### 2. Configure Environment
-
-Edit `.env` with your Elasticsearch credentials:
-
-```bash
-ELASTICSEARCH_ENDPOINT=https://your-elasticsearch-endpoint
-ELASTICSEARCH_API_KEY=your_api_key_here
-```
-
-### 3. Initialize System
-
-```bash
-# Run complete setup (creates indices, ingests data, tests everything)
-python setup_all.py
-```
-
-### 4. Verify Data Ingestion
-
-```bash
-# Check if all data was properly ingested
-python debug_data.py
-
-# Check specific customer data
-python debug_data.py customer mike001
-
-# Test semantic search functionality
-python debug_data.py search
-```
-
-### 5. Start Application
-
-```bash
-# Start the web application
-python app.py
-```
-
-Visit `http://localhost:5000` to access the platform!
-
----
-
-## 🎮 Demo Experience
+## Demo Experience
 
 ### **Semantic Search Demo**
 Try these ELSER-powered queries in the web interface:
@@ -340,7 +507,7 @@ jollibee-beeloyalty/
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Achieved Results
 - **85% improvement** in search result relevance vs keyword search
@@ -357,7 +524,7 @@ jollibee-beeloyalty/
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Local Development
 ```bash
@@ -382,7 +549,7 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run Setup Verification
 ```bash
