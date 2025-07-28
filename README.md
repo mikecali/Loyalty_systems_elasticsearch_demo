@@ -11,7 +11,7 @@ A real-time analytics platform showcasing advanced Elasticsearch capabilities in
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Data Not Appearing in Elasticsearch
 
@@ -114,7 +114,7 @@ User Order → Transaction Created → Analytics Updated → Inventory Adjusted 
 
 ---
 
-## 🛠️ Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -200,7 +200,7 @@ Try these ELSER-powered queries in the web interface:
 
 ---
 
-## 🧪 Technical Deep Dive
+## Technical Deep Dive
 
 ### ELSER Integration
 
@@ -298,7 +298,7 @@ def generate_searchable_text(name, category, price, is_new, is_bestseller):
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 jollibee-beeloyalty/
@@ -318,7 +318,7 @@ jollibee-beeloyalty/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -429,7 +429,7 @@ python app.py
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 ### Elasticsearch Documentation
 - [ELSER Documentation](https://www.elastic.co/guide/en/machine-learning/current/ml-nlp-elser.html)
@@ -442,13 +442,13 @@ python app.py
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙋‍♂️ Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/jollibee-beeloyalty/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/jollibee-beeloyalty/discussions)
@@ -456,7 +456,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎯 Roadmap
+## Roadmap
 
 ### Phase 1 (Current)
 -  ELSER semantic search
