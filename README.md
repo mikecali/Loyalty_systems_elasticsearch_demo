@@ -505,22 +505,6 @@ jollibee-beeloyalty/
 3. **API Access**: Create API key with cluster and index privileges
 4. **Memory**: Minimum 4GB RAM for ELSER model
 
----
-
-## Performance Metrics
-
-### Achieved Results
-- **85% improvement** in search result relevance vs keyword search
-- **60% increase** in recommendation click-through rates  
-- **Sub-200ms response times** for complex semantic queries
-- **Real-time analytics** with <1 second update latency
-- **Linear scaling** to handle 10x traffic spikes
-
-### Load Testing Results
-- **Bulk Processing**: 35 orders processed in 2.1 seconds
-- **Concurrent Users**: Supports 100+ simultaneous sessions
-- **Search Performance**: 500+ semantic queries per second
-- **Memory Usage**: <512MB base application footprint
 
 ---
 
@@ -619,7 +603,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/jollibee-beeloyalty/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/jollibee-beeloyalty/discussions)
-- **Email**: your-email@domain.com
 
 ---
 
@@ -643,8 +626,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 -  Blockchain loyalty rewards
 -  IoT kitchen integration
 
----
 
-**Built with ❤️ using Elasticsearch ELSER, Flask, and the power of semantic search.**
-
-*Ready to revolutionize customer intelligence? Star this repo and let's build the future together! *
